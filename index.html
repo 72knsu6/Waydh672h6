@@ -1,77 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<title>@nadie_mas_que_el_todo</title>
-<style>
-  body {
-    margin: 0; padding: 0; background: #000; color: #ccc;
-    font-family: 'Courier New', monospace;
-    display: flex; justify-content: center; align-items: center;
-    height: 100vh; overflow: hidden;
-    flex-direction: column;
-  }
-  .poema {
-    max-width: 700px;
-    font-size: 1.3rem;
-    line-height: 1.7;
-    opacity: 0;
-    animation: fadeIn 15s forwards;
-    white-space: pre-wrap;
-    user-select: none;
-  }
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  audio {
-    display: none;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>@nadie_mas_que_el_todo</title>
+  <style>
+    body {
+      background: #000;
+      color: #ddd;
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.8;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow-x: hidden;
+    }
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 9999;
+    }
+    .fadeout {
+      animation: fadeout 3s ease forwards;
+    }
+    @keyframes fadeout {
+      to { opacity: 0; visibility: hidden; }
+    }
+    .poema {
+      white-space: pre-wrap;
+      animation: scrollPoema 300s linear forwards;
+    }
+    @keyframes scrollPoema {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+  </style>
 </head>
 <body>
-  <div class="poema">
-No fue una caída,  
-fue un desvanecerse como polvo,  
-un lento escurrirse entre las grietas del tiempo,  
-un suspiro ahogado en la inmensidad del olvido.  
+  <div id="overlay" onclick="startExperience()">Haz clic para comenzar</div>
 
-Caer es rápido, violento, un estallido de luz y ruido;  
-yo me desvanecí, callado, sin ruido,  
-sin testigos, sin lágrimas, sin un adiós.  
+  <audio id="bg-music" src="magic.mp3" loop></audio>
 
-Como humo que se disuelve en la brisa,  
-como una sombra que nadie recuerda,  
-así me fui, sin prisa, sin huella,  
-tan tenue que ni el viento me guarda.  
+  <div class="poema" id="poema">
+    <!-- Poema aquí (extendido) -->
+    No fue una caída.
 
-Nadie gritó mi nombre, nadie buscó mis pasos,  
-ni siquiera el eco se dignó a replicar mi voz,  
-porque no era ausencia, sino ausencia sin dolor,  
-un vacío que no pesa porque no hay peso en el nada.  
+    Fue un desvanecerse...
 
-Y ahora que las luces se apagan una a una,  
-solo queda el reflejo oscuro en la pantalla,  
-la imagen que rehúye, la verdad que se oculta,  
-el nadie más que el todo, el todo en el nadie.  
+    Como polvo...
 
-Aquí termina el poema,  
-aquí empieza el silencio,  
-y aquí me quedo,  
-no siendo nada,  
-siendo todo lo que nadie quiso ver.
+    Como si cada parte de mí se disolviera en la atmósfera.
+    Como si las palabras que alguna vez fui se volvieran viento.
+    Como si cada "estoy bien" ocultara un abismo distinto.
+
+    (Aquí continúa el poema, lo alargaré más si quieres más texto completo)
+
+    ...
+
+    [espacios, silencios, pausas, respiraciones]
+
+    Y al final, solo queda un reflejo.
+    Uno que ni siquiera tú reconoces.
+
+    Porque no eres lo que eras.
+    Ni lo que serás.
+    Solo el eco de lo que pudo haber sido.
+
+    Fin.
   </div>
-  <audio autoplay loop>
-    <source src="magic_medasin.mp3" type="audio/mpeg" />
-  </audio>
+
   <script>
-    // Al terminar el fadeIn del poema, se pone fondo completamente negro para reflejo
-    const poema = document.querySelector('.poema');
-    poema.addEventListener('animationend', () => {
-      document.body.style.backgroundColor = '#000';
-      poema.style.color = 'transparent';
-    });
+    function startExperience() {
+      document.getElementById('overlay').classList.add('fadeout');
+      const music = document.getElementById('bg-music');
+      music.play();
+    }
   </script>
 </body>
 </html>
