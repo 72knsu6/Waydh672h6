@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>@nadie_mas_que_el_todo</title>
+  <style>
+    body {
+      background: #000;
+      color: #ddd;
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.8;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow-x: hidden;
+    }
 
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    .fadeout {
+      animation: fadeout 2s ease forwards;
+    }
+
+    @keyframes fadeout {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .poema {
+      white-space: pre-wrap;
+      animation: scrollPoema 240s linear forwards;
+    }
+
+    @keyframes scrollPoema {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <div id="overlay" onclick="startExperience()">Haz clic para comenzar</div>
+
+  <audio id="bg-music" src="magic_medasin.mp3" loop></audio>
+
+  <div class="poema" id="poema">
+No fue una caída.
+
+Fue un desvanecerse...
+
+Como polvo que el viento no quiere cargar.
+
+Como una voz que se rompe antes de nacer.
+
+No dejé de existir.
+Sólo me convertí en algo que no se nota.
+
+Me volví pausa entre respiraciones.
+Me volví grieta en un muro que nadie mira.
+
+Cada vez que decía "estoy bien", mentía para sostener un cuerpo que ya no quería estar de pie.
+
+Aprendí a sonreír para que no preguntaran.
+Y aprendí a fingir que esas preguntas me importaban.
+
+Me rodearon los que decían entender...
+pero ninguno se quedó cuando el eco fue lo único que quedó de mí.
+
+No fue tristeza.
+Fue vacío sin nombre.
+Silencio con textura.
+
+Vi cómo me olvidaba incluso a mí mismo.
+
+Fui paisaje de otros.
+Fui fondo difuso de vidas que brillaban mientras yo desaparecía.
+
+Nadie notó mi desvanecer.
+Ni siquiera yo.
+
+Y cuando me fui, lo hice en silencio.
+
+Como si nunca hubiese estado.
+
+Como si este poema fuera mi lápida.
+
+Y tú, mi única visita.
+
+  </div>
+
+  <script>
+    function startExperience() {
+      document.getElementById('overlay').classList.add('fadeout');
+      const music = document.getElementById('bg-music');
+      music.play().catch(e => {
+        alert("Haz clic en la pantalla para activar el sonido.");
+      });
+    }
+  </script>
+</body>
+</html>
